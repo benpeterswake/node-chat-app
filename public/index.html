@@ -3,20 +3,36 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>Node.js Chat App</title>
+  <link rel="stylesheet" href="/css/styles.css">
   <script src="https://use.fontawesome.com/555f4f6fc5.js"></script>
 </head>
 
-<body>
-  <p>Welcome to the chat app</p>
+<body class="chat">
 
-  <ol id="messages"></ol>
+  <div class="chat__sidebar">
+    <h1><i class="fa fa-code" aria-hidden="true"></i> Code Chat</h1>
+    <hr />
+    <h3>People</h3>
+    <div id="users"></div>
+  </div>
 
-  <form id="message-form">
-    <input name="message" type="text" placeholder="Message"/>
-    <button>Send</button>
-  </form>
-  <button id="send-location"><i class="fa fa-location-arrow" aria-hidden="true"></i></button>
+  <div class="chat__main">
+    <ol id="messages" class="chat__messages">
+
+      </ol>
+
+    <div class="chat__footer">
+      <form id="message-form">
+        <input name="message" type="text" placeholder="Message"/>
+        <button>Send</button>
+      </form>
+      <button id="send-location"><i class="fa fa-location-arrow" aria-hidden="true"></i></button>
+    </div>
+
+  </div>
+
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/libs/jquery-3.2.1.min.js"></script>

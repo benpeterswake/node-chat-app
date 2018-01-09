@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('createLocationMessage', (coords) => {
-      io.emit('newLocationMessage', generateLocationMsg('Ben', coords.latitude, coords.longitude));
+      io.emit('newLocationMessage', generateLocationMsg('User', coords.latitude, coords.longitude));
     });
 
     socket.on('disconnect', () => {
