@@ -203,7 +203,12 @@ button:disabled {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background: -moz-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(49,84,129,1)), color-stop(100%, rgba(39,107,130,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* ie10+ */
+    background: linear-gradient(325deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* w3c */
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -260,7 +265,7 @@ button:disabled {
     text-align: center;
     font-size: 1.5rem;
     color:white;
-    margin-left:10px;
+    margin-left:12px;
   }
   * {
     font-size: 1rem;
