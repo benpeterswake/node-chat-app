@@ -7,20 +7,23 @@
   font-size: .95rem;
 }
 
+
+
 ul, li {
   list-style-position: inside;
 }
 
  h3 {
   font-weight: 600;
+  border-bottom: 2px solid lightgray;
   text-align: center;
   font-size: 1.5rem;
 }
-h1 {
- font-weight: 600;
- text-align: center;
- font-size: 1.7rem;
-}
+  h1 {
+   font-weight: 600;
+   text-align: center;
+   font-size: 1.9rem;
+  }
 
 button {
   border: none;
@@ -165,6 +168,12 @@ button:disabled {
   padding: 10px;
 }
 
+.chat__messages > li{
+  font-size: 16px;
+  list-style-type: none;
+  padding: 10px;
+}
+
 .message {
   padding: 10px;
 }
@@ -186,12 +195,77 @@ button:disabled {
   width:380px;
   height:250px;
 }
+.sidenav {
+
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+#pc{
+  visibility: visible;
+}
+#mobile{
+  visibility: hidden;
+  position: absolute;
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px; }
+  .sidenav a {font-size: 18px;}
+}
 
 @media (max-width: 1000px) {
+
+  #pc{
+    visibility: hidden;
+    position: absolute;
+    top:0;
+  }
+  #mobile{
+    visibility: visible;
+    position: relative;
+  }
+  .open{
+    font-size:30px;
+    cursor:pointer;
+    text-align: center;
+    font-size: 1.5rem;
+    color:white;
+    margin-left:10px;
+  }
   * {
     font-size: 1rem;
     overflow-x: none;
-
+    overflow-y: autp;
   }
   .map{
     width:99%;
@@ -199,7 +273,8 @@ button:disabled {
   }
 
   .chat__sidebar {
-    display: none;
+    width: 45px;
+    padding: none;
   }
 
   .chat__footer {
@@ -212,5 +287,15 @@ button:disabled {
 
   .chat__footer button {
     margin-right: 0px;
+  }
+}
+@media (max-width: 480px){
+  .open{
+    font-size:30px;
+    cursor:pointer;
+    text-align: center;
+    font-size: 1.5rem;
+    color:white;
+    margin-left:18%;
   }
 }

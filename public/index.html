@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Node.js Chat App</title>
   <link rel="stylesheet" href="/css/styles.css">
   <script src="https://use.fontawesome.com/555f4f6fc5.js"></script>
@@ -11,17 +11,26 @@
 
 <body class="chat">
 
-  <div class="chat__sidebar">
-    <h1><i class="fa fa-code" aria-hidden="true"></i> Code Chat</h1>
-    <hr />
-    <h3>People</h3>
-    <div id="users"></div>
+  <div id="pc" class="chat__sidebar">
+      <h1>Family Chat</h1>
+      <h3 style="margin-top:40px;">People</h3>
+      <div id="users"></div>
+  </div>
+
+
+  <div id="mobile" class="chat__sidebar">
+    <span class="open" onclick="openNav()"><i class="fa fa-bars" aria-hidden="true"></i>
+    </span>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <h1>Family Chat</h1>
+      <h3 style="margin-top:40px;">People</h3>
+      <div id="users"></div>
+    </div>
   </div>
 
   <div class="chat__main">
-    <ol id="messages" class="chat__messages">
-
-      </ol>
+    <ol id="messages" class="chat__messages"></ol>
 
     <div class="chat__footer">
       <form id="message-form">
@@ -36,7 +45,17 @@
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/libs/jquery-3.2.1.min.js"></script>
+  <script src="/js/libs/moment.js"></script>
   <script src="/js/index.js"></script>
+  <script>
+  function openNav() {
+      document.getElementById("mySidenav").style.width = "210px";
+  }
+
+  function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+  }
+  </script>
 </body>
 
 </html>
