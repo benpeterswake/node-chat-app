@@ -265,7 +265,7 @@ button:disabled {
   * {
     font-size: 1rem;
     overflow-x: none;
-    overflow-y: autp;
+    overflow-y: auto;
   }
   .map{
     width:99%;
