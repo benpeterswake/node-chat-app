@@ -241,9 +241,7 @@ button:disabled {
   visibility: hidden;
   position: absolute;
 }
-#txt {
-    text-transform:lowercase;
-}
+
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px; }
