@@ -33,12 +33,16 @@ socket.on('disconnect', function () {
 
 socket.on('updateUserList', function(users) {
   var ol = jQuery('<ol></ol>');
-
+  var olm = jQuery('<ol></ol>');
   users.forEach(function (user) {
     ol.append(jQuery('<li></li>').text(user));
   });
+  jQuery('#usersmobile').html(ol);
 
-  jQuery('#users').html(ol)
+  users.forEach(function (user) {
+    olm.append(jQuery('<li></li>').text(user));
+  });
+  jQuery('#users').html(olm);
 });
 
 socket.on('newMessage', function(msg){
@@ -74,7 +78,6 @@ jQuery('#message-form').on('submit', function (e) {
    var messageTextbox = jQuery('[name=message]');
 
    socket.emit('createMessage', {
-     from: 'User',
      text: messageTextbox.val()
    }, function () {
      messageTextbox.val('')
