@@ -4,7 +4,9 @@ const socketIO = require('socket.io')
 const express = require('express');
 
 //local
+const {Users} = require('./utils/users');
 const {generateMsg, generateLocationMsg} = require('./utils/message');
+const {isRealString} = require('./utils/validation')
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
 
@@ -12,15 +14,27 @@ const port = process.env.PORT || 3000;
 var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
+var users = new Users();
 
 app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
     console.log('New user connected');
 
-    socket.emit('newMessage', generateMsg('Admin', 'Hey guys this is Ben! Right now you are interactiving with my node.js app! Send me a message!'));
+    socket.on('join', (params, callback) => {
+      if(!isRealString(params.name) || !isRealString(params.room)){
+        return callback('Name and room name are required.')
+      }
 
-    socket.broadcast.emit('newMessage', generateMsg('Admin', 'New user joined'));
+      socket.join(params.room);
+      users.removeUser(socket.id);
+      users.addUser(socket.id, params.name, params.room);
+      io.to(params.room).emit('updateUserList', users.getUserList(params.room));
+
+      socket.emit('newMessage', generateMsg('BenBot', 'Hey guys this is Ben! Right now you are interactiving with my node.js chat app! Send me a message!'));
+      socket.broadcast.to(params.room).emit('newMessage', generateMsg('BenBot', `${params.name} has joined the chat.`));
+      callback();
+    });
 
     socket.on('createMessage', (message, callback) => {
       console.log(message);
@@ -33,7 +47,12 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-      console.log('User was disconnected');
+      var user = users.removeUser(socket.id);
+
+      if(user) {
+        io.to(user.room).emit('updateUserList', users.getUserList(user.room));
+        io.to(user.room).emit('newMessage', generateMsg('BenBot', `${user.name} has left the chat.`));
+      }
     });
 });
 
